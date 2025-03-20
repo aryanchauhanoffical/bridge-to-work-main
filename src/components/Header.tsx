@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { Home, ChevronRight } from "lucide-react";
 
@@ -15,9 +14,9 @@ const Header = ({ title, showHome = true }: HeaderProps) => {
       <div className="container flex items-center justify-between h-16 max-w-screen-xl mx-auto px-4">
         <div className="flex items-center">
           <h1 className="text-lg font-semibold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-            {title || "Bridge to Work"}
+            {title || "LendAHand"}
           </h1>
-          {title && title !== "Bridge to Work" && (
+          {title && title !== "LendAHand" && (
             <div className="flex items-center text-muted-foreground ml-2">
               <ChevronRight size={16} />
               <span className="text-sm">{title}</span>
