@@ -151,8 +151,7 @@ const Index = () => {
       <footer className="py-6 text-center text-sm text-muted-foreground bg-gradient-to-r from-blue-50/50 to-purple-50/50 backdrop-blur-sm border-t border-blue-100/30">
         <div className="max-w-4xl mx-auto px-4">
           <p className="mb-2">
-            © 2023 Bridge to Work - Creating pathways to dignity and
-            independence
+            © 2025 LendAHand - Encouraging people to assist meaningfully
           </p>
           <div className="flex justify-center gap-6 mt-2 text-xs text-gray-500">
             <span>Privacy Policy</span>

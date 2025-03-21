@@ -115,8 +115,8 @@ const SelectType = () => {
           Find Your Path
         </h1>
         <p className="text-lg text-muted-foreground mb-8 max-w-3xl">
-          Bridge to Work connects people to opportunities and resources. Select
-          your role below to get started on your journey.
+          LendAHand connects people to opportunities and resources. Select your
+          role below to get started on your journey.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
@@ -175,7 +175,7 @@ const SelectType = () => {
 
         <div className="mt-16 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
           <h2 className="text-xl font-semibold mb-4">
-            How Bridge to Work Makes a Difference
+            How LendAHand Makes a Difference
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start">

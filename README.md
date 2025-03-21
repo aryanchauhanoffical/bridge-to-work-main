@@ -1,11 +1,10 @@
-
-# Bridge to Work
+# LendAHand
 
 A platform connecting job seekers with opportunities and resources.
 
 ## Project Overview
 
-Bridge to Work is designed to help people find employment opportunities and connect with services that can help them in their job search.
+LendAHand is designed to help people find employment opportunities and connect with services that can help them in their job search.
 
 ## Features
 
