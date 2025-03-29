@@ -9,34 +9,22 @@ const NGO_LIST = [
     id: "1",
     name: "Haven Shelter",
     description:
-      "Providing emergency shelter and meals for those experiencing homelessness.",
-    logo: "https://placehold.co/100",
-    impact: "Served over 5,000 individuals last year.",
+      "Emergency shelter providing beds, meals, and basic necessities.",
   },
   {
     id: "2",
     name: "New Beginnings Center",
-    description:
-      "Supporting individuals with job training and housing assistance.",
-    logo: "https://placehold.co/100",
-    impact:
-      "Helped 240 people secure jobs and 180 find stable housing last year.",
+    description: "Support services including counseling and job training.",
   },
   {
     id: "3",
     name: "Community Health Clinic",
-    description:
-      "Providing free or low-cost healthcare services to those in need.",
-    logo: "https://placehold.co/100",
-    impact: "Delivered healthcare to 3,600 uninsured patients last year.",
+    description: "Free or low-cost healthcare services for those in need.",
   },
   {
     id: "4",
-    name: "Future Skills Initiative",
-    description:
-      "Training programs to build marketable skills for sustainable careers.",
-    logo: "https://placehold.co/100",
-    impact: "Graduated 420 students with job placement rate of 78%.",
+    name: "Daily Bread Food Bank",
+    description: "Provides emergency food assistance to those in need.",
   },
 ];
 
@@ -65,90 +53,104 @@ const DonationOption = ({
   </button>
 );
 
+const ThankYouPage = ({
+  amount,
+  onMakeAnotherDonation,
+  onReturnHome,
+}: {
+  amount: string;
+  onMakeAnotherDonation: () => void;
+  onReturnHome: () => void;
+}) => (
+  <div className="min-h-screen flex flex-col bg-background">
+    <Header title="Thank You" />
+    <main className="flex-1 container-padding max-w-screen-lg mx-auto">
+      <div className="mb-6">
+        <BackButton to="/select-type" />
+      </div>
+
+      <div className="glass-card rounded-xl p-8 text-center animate-fade-in">
+        <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+          <Check className="text-green-600" size={48} />
+        </div>
+        <h1 className="text-3xl font-bold mb-4 text-gradient-primary">
+          Thank You for Your Donation!
+        </h1>
+        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          Your contribution of ₹{amount} will help create meaningful change in
+          someone's life.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="p-4 rounded-lg bg-blue-50 border border-blue-100">
+            <div className="text-2xl font-bold text-blue-600 mb-2">1+</div>
+            <div className="text-sm text-blue-700">Lives Impacted</div>
+          </div>
+          <div className="p-4 rounded-lg bg-green-50 border border-green-100">
+            <div className="text-2xl font-bold text-green-600 mb-2">24/7</div>
+            <div className="text-sm text-green-700">Support Available</div>
+          </div>
+          <div className="p-4 rounded-lg bg-purple-50 border border-purple-100">
+            <div className="text-2xl font-bold text-purple-600 mb-2">100%</div>
+            <div className="text-sm text-purple-700">Transparency</div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <button
+            onClick={onMakeAnotherDonation}
+            className="btn-primary w-full max-w-xs bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary transition-all duration-300"
+          >
+            Make Another Donation
+          </button>
+          <button
+            onClick={onReturnHome}
+            className="w-full max-w-xs py-2.5 px-5 rounded-lg border border-border bg-white hover:bg-gray-50 transition-all duration-300 text-sm font-medium"
+          >
+            Return to Home
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+);
+
 const DirectDonate = () => {
   const [selectedNGO, setSelectedNGO] = useState("");
   const [donationAmount, setDonationAmount] = useState("");
   const [customAmount, setCustomAmount] = useState("");
-  const [donationSuccess, setDonationSuccess] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const navigate = useNavigate();
 
   const handleDonate = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would process payment
     setShowThankYou(true);
+  };
+
+  const handleMakeAnotherDonation = () => {
+    setShowThankYou(false);
+    setSelectedNGO("");
+    setDonationAmount("");
+    setCustomAmount("");
+  };
+
+  const handleReturnHome = () => {
+    navigate("/select-type");
   };
 
   if (showThankYou) {
     return (
-      <div className="min-h-screen flex flex-col bg-background">
-        <Header title="Thank You" />
-
-        <main className="flex-1 container-padding max-w-screen-lg mx-auto">
-          <div className="mb-6">
-            <BackButton to="/select-type" />
-          </div>
-
-          <div className="glass-card rounded-xl p-8 text-center animate-fade-in">
-            <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-              <Check className="text-green-600" size={48} />
-            </div>
-            <h1 className="text-3xl font-bold mb-4 text-gradient-primary">
-              Thank You for Your Donation!
-            </h1>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Your contribution of ₹{donationAmount || customAmount} will help
-              create meaningful change in someone's life.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="p-4 rounded-lg bg-blue-50 border border-blue-100">
-                <div className="text-2xl font-bold text-blue-600 mb-2">1+</div>
-                <div className="text-sm text-blue-700">Lives Impacted</div>
-              </div>
-              <div className="p-4 rounded-lg bg-green-50 border border-green-100">
-                <div className="text-2xl font-bold text-green-600 mb-2">
-                  24/7
-                </div>
-                <div className="text-sm text-green-700">Support Available</div>
-              </div>
-              <div className="p-4 rounded-lg bg-purple-50 border border-purple-100">
-                <div className="text-2xl font-bold text-purple-600 mb-2">
-                  100%
-                </div>
-                <div className="text-sm text-purple-700">Transparency</div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <button
-                onClick={() => {
-                  setShowThankYou(false);
-                  setSelectedNGO("");
-                  setDonationAmount("");
-                  setCustomAmount("");
-                }}
-                className="btn-primary w-full max-w-xs bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-primary transition-all duration-300"
-              >
-                Make Another Donation
-              </button>
-              <button
-                onClick={() => navigate("/select-type")}
-                className="w-full max-w-xs py-2.5 px-5 rounded-lg border border-border bg-white hover:bg-gray-50 transition-all duration-300 text-sm font-medium"
-              >
-                Return to Home
-              </button>
-            </div>
-          </div>
-        </main>
-      </div>
+      <ThankYouPage
+        amount={donationAmount || customAmount}
+        onMakeAnotherDonation={handleMakeAnotherDonation}
+        onReturnHome={handleReturnHome}
+      />
     );
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header title="Direct Donate" />
-
       <main className="flex-1 container-padding max-w-screen-lg mx-auto">
         <div className="mb-6">
           <BackButton to="/select-type" />
